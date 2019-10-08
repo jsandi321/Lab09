@@ -9,23 +9,24 @@ public class Laboratorio9 {
         //Creacion de objetos para pruebas
         Scanner sc = new Scanner(System.in);
                 
-        Sistema sis = new Sistema();
-        
         Police police1 = new Police("Jeison", 5555);
         Police police2 = new Police("Emmanuel", 2222);
         
         
         Regular regular1 = new Regular(police1, "Patrullar zona del Hospital", LocalDateTime.now());
-        Temporary temporary1 = new Temporary(police2, "Juicio", LocalDateTime.now());
+        Regular regular2 = new Regular(police2, "Patrullar zona Comercial B", LocalDateTime.now());
+        Temporary temporary1 = new Temporary(police1, "Juicio", LocalDateTime.now(), "1 dia");
+        Temporary temporary2 = new Temporary(police2, "Custodiar Concierto", LocalDateTime.now(), "2 dias");
                 
-
         Admin admin1 = new Admin("Juan", 8888);
-            
+        //Asignaciones de prueba
+        admin1.addAssignmentRegular(police1.regul, regular1);
+        admin1.addAssignmentTemporary(police1.temp, temporary1);
+        admin1.addAssignmentRegular(police2.regul, regular2);
+        admin1.addAssignmentTemporary(police2.temp, temporary2);
         
-        sis.addRegular(regular1);
-        sis.addTemporary(temporary1);
-        sis.addPolice(police1);
-        sis.addPolice(police2);
+        admin1.addPolice(police1);
+        admin1.addPolice(police2);
         
         
         boolean salida = false;
@@ -55,7 +56,7 @@ public class Laboratorio9 {
                             int election = sc.nextInt();
                             switch (election){
                                 case 1:
-                                    System.out.println("\nConsulta de Policías\n"+sis.getPolicias());
+                                    System.out.println("\nConsulta de Policías\n"+admin1.getPolice());
                                 break;
                                     
                                 case 2:
@@ -63,52 +64,38 @@ public class Laboratorio9 {
                                     System.out.println("Digite el iD del oficial al que desea encargar la tarea: ");
                                     
                                     int numid = sc.nextInt();
-                                    if (sis.checkId(numid) == true){
+                                    if (admin1.checkId(numid) == true){
                                         int idOfficer = numid;
-                                        System.out.println("Digite la descripción de la tarea: ");
+                                        int posPolice = admin1.posPolice(numid);
+                                        Police pol = admin1.getPolice().get(posPolice);
+                                        System.out.println("Digite la descripción de la tarea de "+pol.getName());
                                         String descrip = sc.nextLine();
-                                        Regular regular2 = new Regular(police2,descrip,LocalDateTime.now());
-                                    } else{
+                                        Regular regular3 = new Regular(pol,descrip,LocalDateTime.now());
+                                        admin1.addAssignmentRegular(pol.regul, regular3);
+                                    } 
+                                    else{
                                         System.out.println("\nIntentelo mas tarde");
                                     }
                                     
                                 case 3:
-                                    sis.getRegulares();
+                                    System.out.println("\nAsignar una tarea temporal\n\n");
+                                    System.out.println("Digite el iD del oficial al que desea encargar la tarea: ");
                                     
-                                    
-                                    
-
-                            
+                                    int numid1 = sc.nextInt();
+                                    if(admin1.checkId(numid1) == true){
+                                        int idPolice = numid1;
+                                        int posPol= admin1.posPolice(idPolice);
+                                        Police poliTemporal = admin1.getPolice().get(posPol);
+                                        System.out.println("Ingrese descripcion de la tarea para "+poliTemporal.getName());
+                                        String description = sc.next();
+                                        Temporary temporary3 = new Temporary(poliTemporal, description, LocalDateTime.now(),"1 dia");
+                                    }
+                                case 4:
+                                    break;
+                            }
                         }
                 }
-              
-                    /*default:
-                            System.out.println("Eliga una de las siguientes opciones");
-                            boolean salir = false;
-                            
-                            while(!salir) {
-                                opcion = sc.nextInt();
-                                if(opcion == 1){
-                                    System.out.println("Esta es la informacion del policia");
-                                    System.out.println("1. "+pol1.getName());
-                                    System.out.println("1. "+pol1.getId());
-                                    System.out.println("1. "+pol1.getRegulares());
-                                    System.out.println("1. "+pol1.getTemporales());
-                            }
-                                if(opcion == 2){
-                                    System.out.println("Por favor ingrese una descripcion de la tarea que desea asignar");
-                                    String asignacion= sc.next();
-                                    Regular asignacionPermanente = new Regular(asignacion);
-                                    admin1.addAssignmentRegular(pol1.getRegulares(), asignacionPermanente);
-                                    ArrayList<Regular> tarea = pol1.getRegulares();
-                                    System.out.println((tarea.get(0)).getAssignment());
-                                    
-                                }
-                            }
-                       */ }
-                }
-            }   
         }
-    //}
-//}
+    }
+}
 

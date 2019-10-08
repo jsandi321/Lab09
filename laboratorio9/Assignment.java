@@ -7,9 +7,6 @@ public class Assignment {
     protected String description;
     protected  LocalDateTime startDate;
     
-            
-    public Assignment(){
-    }
     public Assignment(Police policia,String description, LocalDateTime startDate){        
         this.description = description;
         this.startDate = startDate;
