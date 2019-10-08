@@ -1,15 +1,21 @@
 package laboratorio9;
 
-/**
- *
- * @author jsandi321
- */
+import java.time.LocalDateTime;
+
 public class Regular extends Assignment{ 
     
-    public Regular(){    
+     private final String type = "Regular";
+        
+     
+    public Regular(){
     }
     
-    public Regular(String description){
-        super(description);
+    public Regular(Police policia, String description, LocalDateTime startDate){
+        super(policia, description, startDate);
+    }
+    
+    @Override
+    public String toString(){
+        return "Asignacion"+ "\n\nAsiganado a: "+policia + "\nDescripcion: "+ description+ "\nFecha de inicio: "+ startDate;
     }
 }

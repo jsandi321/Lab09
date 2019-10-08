@@ -1,25 +1,42 @@
 package laboratorio9;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
-/**
- *
- * @author jsandi321
- */
 public class Police extends User{
-    private ArrayList<Regular> regulares = new ArrayList();
-    private ArrayList<Temporary> temporales = new ArrayList();
+    
+    /*ArrayList<Regular> regul = new ArrayList<>();
+    ArrayList<Temporary> temp = new ArrayList<>();*/
+    
+    
     // Constructores
+    
     public Police(){
         
     }
-    public Police(String name, int id){
+    public Police(String name, int id/*, ArrayList<Regular> regulares, ArrayList<Temporary> temporales*/){
         super(name, id);
+        //this.regulares = regulares;
+        //this.temporales = temporales;       
     }
+    
     //Metodos
-    public ArrayList getRegulares(){
-        return regulares;
+    
+    /*public ArrayList<Regular> getRegul(){
+        return regul;
     }
-    public ArrayList getTemporales(){
-        return temporales;
+    public ArrayList<Temporary> getTemp(){
+        return temp;
+    }
+    
+    public void addRegul(Regular R) {
+        this.regul.add(R);
+    }
+    
+    public void addTemp(Temporary T) {
+        this.temp.add(T);
+    }
+    */
+    @Override
+    public String toString(){
+        return "\n\n" + name + "\nId: "+ getId();
     }
 }

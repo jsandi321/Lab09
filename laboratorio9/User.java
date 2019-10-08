@@ -1,25 +1,21 @@
 package laboratorio9;
-/**
- *
- * @author jsandi321
- */
-public class User {
-    private String name;
-    private int id;
 
-    /**
-     * Constructores
-     */
+public class User {
+    protected String name;
+    protected int id;
+
+   
+    //Constructores
+    
     public User(){
     }
     public User(String name, int id){
         this.name = name;
         this.id = id;
     }
-    /**
-     * Metodos
-     * @return 
-     */
+
+    //Metodos
+    
     public String getName(){
         return name;
     }

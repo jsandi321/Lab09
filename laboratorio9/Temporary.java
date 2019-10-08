@@ -1,22 +1,23 @@
 
 package laboratorio9;
 
-/**
- *
- * @author jsandi321
- */
+import java.time.LocalDateTime;
+
 public class Temporary extends Assignment{
-    private String tipo;
-/**
- * Constructores
- */    
+    private final String type = "Temporal";
+    
+ //Constructores
+   
     public Temporary(){
         
     }
-    public Temporary(String description, String tipo){
-        super(description);
-        this.tipo = tipo;
+    public Temporary(Police policia, String description, LocalDateTime startDate){
+        super(policia, description, startDate);
+        
     }
-    
+    @Override
+    public String toString(){
+        return "Asignacion"+ "\n\nAsiganado a: "+policia + "\nDescripcion: "+ description+ "\nFecha de inicio: "+ startDate;
+    } 
     
 }
